@@ -1,6 +1,9 @@
-package com.knits.proto.monopoly.domain;
+package com.knits.proto.monopoly.domain.ui;
 
 import java.util.List;
+
+import com.knits.proto.monopoly.domain.Player;
+import com.knits.proto.monopoly.domain.Property;
 
 public class Trade {
 	

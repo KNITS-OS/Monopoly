@@ -1,4 +1,6 @@
-package com.knits.proto.monopoly.domain;
+package com.knits.proto.monopoly.utils;
+
+import com.knits.proto.monopoly.domain.ui.Notification;
 
 public class NotificationUtils {
 

@@ -10,7 +10,7 @@ public class Player {
 	private int balance;
 	private int currentPosition;
 	private List<Property> assets;
-	private Set<String> groupCompleted = new HashSet<String>();
+	private Set<String> groupsCompleted = new HashSet<String>();
 	
 	
 	public Player(String name) {

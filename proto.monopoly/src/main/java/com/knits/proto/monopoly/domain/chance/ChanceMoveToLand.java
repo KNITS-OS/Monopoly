@@ -1,4 +1,6 @@
-package com.knits.proto.monopoly.domain;
+package com.knits.proto.monopoly.domain.chance;
+
+import com.knits.proto.monopoly.domain.Player;
 
 public class ChanceMoveToLand extends Chance{
 

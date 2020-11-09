@@ -1,4 +1,4 @@
-package com.knits.proto.monopoly.domain;
+package com.knits.proto.monopoly.domain.chance;
 
 public class Chance {
 

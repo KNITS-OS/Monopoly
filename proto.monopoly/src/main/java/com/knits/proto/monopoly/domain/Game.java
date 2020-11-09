@@ -7,6 +7,10 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
 
+import com.knits.proto.monopoly.domain.ui.Event;
+import com.knits.proto.monopoly.domain.ui.Notification;
+import com.knits.proto.monopoly.utils.NotificationUtils;
+
 
 
 
@@ -17,15 +21,9 @@ public class Game {
 
 	private List<Player> players= new ArrayList<Player>(8);
 	
-	private Map<Player, Boolean> playerActionTurns = new HashMap<Player, Boolean>(8);
-	private Map<Integer, BoardSquare> position2Land= new HashMap<Integer, BoardSquare>(40);
+	private Map<Integer, BoardSquare> position2BoardSquare= new HashMap<Integer, BoardSquare>(40);
 	private Map<String, Property> title2Property= new HashMap<String, Property>(26);
-	private Map<String, List<Property>> group2Properties = new HashMap<String, List<Property>>(4);
 	
-	
-	private Map<Player,List<Notification>> notificationBoxes;	
-	private Stack<Event> eventsHistory= new Stack<Event>();
-	private Stack<Notification> notificationHistory= new Stack<Notification>();
 	
 	public Game() {
 		
@@ -35,10 +33,10 @@ public class Game {
 		
 		
 		//1) load all BoardSquare in Board
-		position2Land.put(0, new BoardSquare("Start",BoardSquare.Type.START));		
-		position2Land.put(1, new BoardSquare(mediterraneanAvenueTitleDeed,BoardSquare.Type.PROPERTY));
-		position2Land.put(2, new BoardSquare(chance,BoardSquare.Type.CHANCE));
-		position2Land.put(3, new BoardSquare(balticAvenueTitleDeed,BoardSquare.Type.PROPERTY));
+		position2BoardSquare.put(0, new BoardSquare("Start",BoardSquare.Type.START));		
+		position2BoardSquare.put(1, new BoardSquare(mediterraneanAvenueTitleDeed,BoardSquare.Type.PROPERTY));
+		position2BoardSquare.put(2, new BoardSquare(chance,BoardSquare.Type.CHANCE));
+		position2BoardSquare.put(3, new BoardSquare(balticAvenueTitleDeed,BoardSquare.Type.PROPERTY));
 		// ...
 		
 				
@@ -63,19 +61,7 @@ public class Game {
 	}
 	
 	
-	public Player getPlayerByIndex(int index) {
-		return players.get(index);
-	}
 	
-	public Player nextPlayerInTurn() {
-		for (Player player : playerActionTurns.keySet()) {
-			if (playerActionTurns.get(player).booleanValue()) {
-				return player;
-			}
-		}
-		throw new IllegalStateException("No Player is currently active");
-	}
-
 	public void nextTurn() {
 		// player in turn receives notification about his/her turn
 		//all other player receive notification that blocks their interface
@@ -107,7 +93,7 @@ public class Game {
 	}
 	
 	
-	public void mortgage(Event propertyToMortgage) {
+	public void askMortgage(Event propertyToMortgage) {
 		//1) update Player balance
 		//2) update Player Property mortgage
 	}
@@ -118,7 +104,7 @@ public class Game {
 	}
 	
 	public void payment (Event payment) {
-		//1) decrease Players balance
+		//1) decrease sender balance
 		//2) increase recipient balance
 	}
 	
@@ -132,12 +118,30 @@ public class Game {
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public Player getPlayerByIndex(int index) {
+		return players.get(index);
+	}
+	
+	public Player nextPlayerInTurn() {
+		throw new UnsupportedOperationException("nextPlayerInTurn not yet implemented");
+	}
+
+	
+	
 	public void moveToNextDestination (Event moveRequest) {
 		
 		//cases to consider:
 		int steps=stepsFromDice();
-		int newPosition =moveRequest.getSender().getCurrentPosition()+steps;
-		
+		int newPosition =moveRequest.getSender().getCurrentPosition()+steps;		
 		Player movingPlayer=moveRequest.getSender();
 		
 		if(newPosition>=40) {
@@ -150,7 +154,7 @@ public class Game {
 		// Send PlayerPositionUpdate Notification
 		
 		
-		BoardSquare land =position2Land.get(newPosition);
+		BoardSquare land =position2BoardSquare.get(newPosition);
 		
 		switch (land.getType()) {
 		
@@ -215,6 +219,13 @@ public class Game {
 		
 	}
 
+	private void assignCardToPlayer(Player player) {
+		
+		//1) initial properties are added to Player assets
+		//2) player funds are decreased by the properties nominalPrice
+		
+	}
+	
 	
 	private void handlePassThroughStart(Player sender) {
 		// TODO Auto-generated method stub
@@ -227,16 +238,10 @@ public class Game {
 		return firstDie+secondDie;
 	}
 
-	private void assignCardToPlayer(Player player) {
-		
-		//1) initial properties are added to Player assets
-		//2) player funds are decreased by the properties nominalPrice
-		
-	}
+
 	
 	
 	private void sendNotification(Notification notification) {
-		notificationHistory.push(notification);
-		
+		throw new UnsupportedOperationException("nextPlayerInTurn not yet implemented");		
 	}
 }

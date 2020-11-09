@@ -1,8 +1,8 @@
-package com.knits.proto.monopoly.demo;
+package com.knits.proto.monopoly.utils;
 
-import com.knits.proto.monopoly.domain.Event;
 import com.knits.proto.monopoly.domain.Player;
-import com.knits.proto.monopoly.domain.Trade;
+import com.knits.proto.monopoly.domain.ui.Event;
+import com.knits.proto.monopoly.domain.ui.Trade;
 
 public class UISimulator {
 

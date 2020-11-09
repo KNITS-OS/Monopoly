@@ -1,9 +1,10 @@
 package com.knits.proto.monopoly.demo;
 
-import com.knits.proto.monopoly.domain.Event;
 import com.knits.proto.monopoly.domain.Game;
 import com.knits.proto.monopoly.domain.Player;
-import com.knits.proto.monopoly.domain.Trade;
+import com.knits.proto.monopoly.domain.ui.Event;
+import com.knits.proto.monopoly.domain.ui.Trade;
+import com.knits.proto.monopoly.utils.UISimulator;
 
 public class DemoMonopoly {
 

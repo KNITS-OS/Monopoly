@@ -2,12 +2,7 @@ package com.knits.proto.monopoly.domain;
 
 public class Property {
 
-	public Property(String title, int nominalPrice, Group group) {
-		super();
-		this.title = title;
-		this.nominalPrice = nominalPrice;
-		this.group = group;
-	}
+
 	private String title;
 	private int nominalPrice;
 	private boolean mortgage;
@@ -15,7 +10,12 @@ public class Property {
 	private Player owner;
 	private int currentRealEstate;
 	
-	
+	public Property(String title, int nominalPrice, Group group) {
+		super();
+		this.title = title;
+		this.nominalPrice = nominalPrice;
+		this.group = group;
+	}
 	
 	
 	public boolean isMortgage() {
